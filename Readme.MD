@@ -1,6 +1,6 @@
 Steps:
 
-To convert .msg (Outlook email files) and .eml (email files) to PDF in a Node.js environment, you will need to handle both file types appropriately  while maintaining images and links embedded in the emails involves additional complexity. Since they have different formats and handling mechanisms. .msg is a proprietary binary format used by Microsoft Outlook, while .eml files are plain text that follow the MIME standard.
+To convert .eml (email files) to PDF in a Node.js environment, you will need to handle both file types appropriately  while maintaining images and links embedded in the emails involves additional complexity. Since they have different formats and handling mechanisms. .eml files are plain text that follow the MIME standard.
 The pdfkit library, which we are using, supports adding images and hyperlinks but does not automatically handle HTML content. You will need to manually parse the HTML and appropriately format it into the PDF.
 
 For this task, we'll use Node.js with several libraries:
@@ -21,7 +21,7 @@ Commands:
 	mkdir output
 	node server.js
 
-You can now test your server using Postman or cURL by uploading .msg or .eml files to the /upload endpoint. Ensure that your requests are configured to send the file as multipart/form-data.
+You can now test your server using Postman or cURL by uploading .eml files to the /upload endpoint. Ensure that your requests are configured to send the file as multipart/form-data.
 
 If you want to test using the postman:
 1. Open Postman and create a new request by clicking on the "New" button or the "+" tab.
@@ -57,6 +57,8 @@ app.post('/upload', upload.single('file'), async (req, res) => {
 
     try {
         let htmlContent;
+	// Limitation of .msg to pdf
+	//.msg is converted to pdf with the text only (if the Microsoft SafeLink email protection is enabled), if not it will convert the links and images properly. 
         if (path.extname(req.file.originalname).toLowerCase() === '.msg') {
             const msgReader = new MsgReader(fileBuffer);
             const msgData = msgReader.getFileData();
