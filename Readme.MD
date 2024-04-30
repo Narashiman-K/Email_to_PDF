@@ -10,15 +10,15 @@ For this task, we'll use Node.js with several libraries:
     * multer, express, html-pdf-node and cheerio
 
 Commands:
+	mkdir emailToPdfConverter
+	cd emailToPdfConverter
+	
+	npm init -y
+	npm install express multer msgreader mailparser pdfkit
+	npm install html-pdf-node cheerio
 
-mkdir emailToPdfConverter
-cd emailToPdfConverter
-npm init -y
-npm install express multer msgreader mailparser pdfkit
-npm install html-pdf-node cheerio
-
-mkdir output
-node server.js
+	mkdir output
+	node server.js
 
 You can now test your server using Postman or cURL by uploading .msg or .eml files to the /upload endpoint. Ensure that your requests are configured to send the file as multipart/form-data.
 
