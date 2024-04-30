@@ -4,12 +4,13 @@ To convert .msg (Outlook email files) and .eml (email files) to PDF in a Node.js
 The pdfkit library, which we are using, supports adding images and hyperlinks but does not automatically handle HTML content. You will need to manually parse the HTML and appropriately format it into the PDF.
 
 For this task, we'll use Node.js with several libraries:
-    * msgreader for .msg files to extract their content.
-    * mailparser for parsing .eml files.
-    * pdfkit for generating PDF files.
-    * multer, express, html-pdf-node and cheerio
+    1. msgreader for .msg files to extract their content.
+    2. mailparser for parsing .eml files.
+    3. pdfkit for generating PDF files.
+    4. multer, express, html-pdf-node and cheerio
 
 Commands:
+	
 	mkdir emailToPdfConverter
 	cd emailToPdfConverter
 	
